@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RequiredArgsConstructor
 @Controller
@@ -22,5 +23,13 @@ public class IndexController { // 페이지에 관련된 컨트롤러는 모두 
     @GetMapping("/posts/save")
     public String postsSave() {
         return "posts-save"; // "~/posts/save"를 호출하면 posts-save.mustache 호출
+    }
+
+    @GetMapping("/posts/update/{id}")
+    public String postsUpdate(@PathVariable Long id, Model model) {
+        PostsResponseDto dto=postsService.findById(id);
+        model.addAttribute("post", dto);
+
+        return "posts-update";
     }
 }
