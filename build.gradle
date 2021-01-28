@@ -29,6 +29,7 @@ dependencies {
     compile('com.h2database:h2') // 인메모리 관계형 데이터베이스
     compile('org.springframework.boot:spring-boot-starter-mustache') // 머스테치 스타터 의존성 등록
     compile('org.springframework.boot:spring-boot-starter-oauth2-client')
+    compile('org.springframework.session:spring-session-jdbc')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 
 }
