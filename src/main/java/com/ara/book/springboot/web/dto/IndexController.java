@@ -1,5 +1,6 @@
 package com.ara.book.springboot.web.dto;
 
+import com.ara.book.springboot.config.auth.LoginUser;
 import com.ara.book.springboot.config.auth.SessionUser;
 import com.ara.book.springboot.service.posts.PostsService;
 import lombok.RequiredArgsConstructor;
@@ -16,12 +17,10 @@ import javax.servlet.http.HttpSession;
 public class IndexController { // 페이지에 관련된 컨트롤러는 모두 IndexController를 사용한다.
 
     private final PostsService postsService;
-    private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, @LoginUser SessionUser user) {
         model.addAttribute("posts", postsService.findAllDesc());
-        SessionUser user=(SessionUser) httpSession.getAttribute("user");
         if (user!=null) {
             model.addAttribute("userName", user.getName());
         }
